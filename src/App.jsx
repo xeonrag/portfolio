@@ -222,7 +222,7 @@ function Hero() {
         <div className="hero-shade" />
         <img
           className="hero-portrait"
-          src="/hrithik-portrait-black-bg.png"
+          src={`${import.meta.env.BASE_URL}hrithik-portrait-black-bg.png`}
           alt="Portrait of Hrithik Uday"
         />
         <div className="container hero-content">
