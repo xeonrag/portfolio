@@ -1,0 +1,133 @@
+:root,
+html[data-theme="light"],
+html[data-theme="dark"],
+html[data-theme="auto"] {
+  color-scheme: dark;
+  --primary: #c6ff00;
+  --secondary: #181818;
+  --accent: #c6ff00;
+  --primary-fg: #080808;
+  --body-fg: #f3f3ef;
+  --body-bg: #080808;
+  --body-quiet-color: #a7a7a2;
+  --body-loud-color: #fff;
+  --header-color: #f3f3ef;
+  --header-bg: #080808;
+  --breadcrumbs-fg: #b6b6b1;
+  --breadcrumbs-bg: #111;
+  --link-fg: #c6ff00;
+  --link-hover-color: #e0ff68;
+  --link-selected-fg: #080808;
+  --hairline-color: #292929;
+  --border-color: #292929;
+  --darkened-bg: #111;
+  --selected-bg: #1b1b1b;
+  --selected-row: #202020;
+  --close-button-bg: #252525;
+  --close-button-hover-bg: #383838;
+}
+
+body {
+  background: #080808;
+}
+
+#header {
+  border-bottom: 1px solid #292929;
+}
+
+#site-name a {
+  color: #f3f3ef;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+#site-name span {
+  color: #c6ff00;
+}
+
+#user-tools a,
+.breadcrumbs a {
+  color: #c6ff00;
+}
+
+.module,
+#content-related,
+.inline-group {
+  border: 1px solid #292929;
+  background: #101010;
+}
+
+.module h2,
+.module caption,
+.inline-group h2 {
+  background: #c6ff00;
+  color: #080808;
+  font-weight: 700;
+}
+
+.module table th,
+.module table td,
+.results tbody tr,
+.results thead th {
+  border-color: #292929;
+}
+
+.module table tr:nth-child(even),
+.results tbody tr:nth-child(even) {
+  background: #151515;
+}
+
+.button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+.submit-row input {
+  border: 0;
+  border-radius: 0;
+  background: #c6ff00;
+  color: #080808;
+  font-weight: 700;
+}
+
+.button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+.submit-row input:hover {
+  background: #d9ff4f;
+  color: #080808;
+}
+
+input,
+textarea,
+select,
+.selector select {
+  border-color: #383838;
+  background-color: #111;
+  color: #f3f3ef;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #c6ff00;
+}
+
+.messagelist li {
+  border: 1px solid #292929;
+}
+
+@media (max-width: 760px) {
+  #content {
+    padding: 16px;
+  }
+
+  #content-main,
+  #content-related {
+    width: 100%;
+  }
+
+  .module table {
+    width: 100%;
+  }
+}

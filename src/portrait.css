@@ -1,0 +1,121 @@
+.hero-portrait {
+  position: absolute;
+  z-index: 0;
+  top: 88px;
+  right: 0;
+  bottom: 0;
+  height: calc(100% - 88px);
+  max-width: 55vw;
+  object-fit: contain;
+  object-position: right bottom;
+  filter: grayscale(1) brightness(0.74) contrast(1.08);
+  opacity: 0.96;
+  -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+}
+
+.hero-shade {
+  z-index: 1;
+}
+
+.hero-content {
+  z-index: 2;
+}
+
+.hero-content .scroll-indicator {
+  margin-top: clamp(40px, 7vh, 64px);
+}
+
+
+
+@media (max-width: 900px) {
+  .hero-portrait {
+    max-width: 58vw;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-shade {
+    z-index: 2;
+  }
+
+  .hero-portrait {
+    z-index: 1;
+    top: 20%;
+    bottom: 0;
+    width: auto;
+    height: 76%;
+    max-width: none;
+    max-height: 580px;
+    right: -18vw;
+    filter: grayscale(1) brightness(0.78) contrast(1.1);
+    opacity: 0.97;
+  }
+
+  .hero-content {
+    z-index: 3;
+    min-height: 0;
+  }
+
+  .hero {
+    height: auto;
+    min-height: 0;
+  }
+
+  .hero-star {
+    margin-left: auto;
+  }
+
+  .hero-name {
+    margin-bottom: 20px;
+  }
+
+  .hero-introduction h2 {
+    margin-bottom: 12px;
+  }
+
+  .hero-content .scroll-indicator {
+    margin-top: clamp(24px, 5vh, 40px);
+  }
+
+  .contact-grid > *,
+  .contact-details {
+    min-width: 0;
+  }
+
+  .contact-email {
+    max-width: 100%;
+    min-width: 0;
+    font-size: clamp(15px, 4.5vw, 19px);
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .social-links {
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1100px) and (orientation: portrait) {
+  .hero {
+    height: auto;
+    min-height: 760px;
+  }
+
+  .hero-content {
+    min-height: 0;
+  }
+
+  .hero-portrait {
+    top: 88px;
+    right: 0;
+    bottom: auto;
+    width: auto;
+    height: min(76vh, 580px);
+    max-width: none;
+    max-height: none;
+    object-position: right top;
+  }
+}
