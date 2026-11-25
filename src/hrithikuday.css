@@ -582,6 +582,69 @@ svg {
   flex-direction: column;
   padding: 26px 22px 28px;
   border-right: 1px solid var(--rule-dark);
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.service-item:hover,
+.service-item:focus-visible {
+  background-color: var(--lime);
+  color: var(--ink);
+}
+
+.service-item:hover .service-top,
+.service-item:hover .service-description,
+.service-item:focus-visible .service-top,
+.service-item:focus-visible .service-description {
+  color: var(--ink);
+}
+
+.service-item:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: -2px;
+}
+
+.service-tools {
+  max-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    max-height 220ms ease,
+    margin 220ms ease,
+    opacity 180ms ease,
+    visibility 180ms ease;
+}
+
+.service-item:hover .service-tools,
+.service-item:focus-visible .service-tools {
+  max-height: 180px;
+  margin-top: 16px;
+  opacity: 1;
+  visibility: visible;
+}
+
+.service-tools li {
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.service-tools li::before {
+  content: '· ';
+  font-weight: 700;
+}
+
+@media (hover: none) {
+  .service-tools {
+    max-height: none;
+    margin-top: 16px;
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 .service-item:last-child {

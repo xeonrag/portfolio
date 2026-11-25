@@ -34,21 +34,25 @@ const services = [
     title: 'Frontend Development',
     description:
       'Responsive, accessible interfaces and polished web experiences built with React, Next.js, and TypeScript.',
+    tools: ['React', 'HTML', 'CSS', 'JavaScript'],
   },
   {
     title: 'Bot Development',
     description:
       'Custom Telegram bots for group workflows, notifications, and task automation that simplify repetitive work.',
+    tools: ['Chat bots', 'Auto-filter bots', 'Streaming bots', 'Downloader bots', 'Utility bots'],
   },
   {
     title: 'Backend Development',
     description:
       'Python and Django backends, REST APIs, and database-driven systems using Django REST Framework, PostgreSQL, and MongoDB.',
+    tools: ['Python', 'Django', 'Django REST Framework', 'PostgreSQL', 'MongoDB'],
   },
   {
     title: 'Automation',
     description:
       'Custom productivity tools, scripting workflows, and automation for repetitive tasks.',
+    tools: ['Workflow automation', 'Task automation', 'File and data processing'],
   },
 ]
 
@@ -366,12 +370,22 @@ function Services() {
         </div>
         <div className="services-grid" data-reveal>
           {services.map((service, index) => (
-            <article className="service-item" key={service.title}>
+            <article
+              className="service-item"
+              key={service.title}
+              tabIndex={0}
+              aria-label={`${service.title}. Focus or hover to view tools and examples.`}
+            >
               <span className="service-top">
                 <span>{String(index + 1).padStart(2, '0')}</span>
               </span>
               <span className="service-title">{service.title}</span>
               <span className="service-description">{service.description}</span>
+              <ul className="service-tools" aria-label="Tools and examples">
+                {service.tools.map((tool) => (
+                  <li key={tool}>{tool}</li>
+                ))}
+              </ul>
             </article>
           ))}
         </div>
