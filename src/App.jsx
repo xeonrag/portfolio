@@ -575,7 +575,7 @@ function Contact() {
                       title={label}
                     >
                       <svg className="social-link-icon" aria-hidden="true" focusable="false">
-                        <use href={`/icons.svg#${icon}`} />
+                        <use href={`${import.meta.env.BASE_URL}icons.svg#${icon}`} />
                       </svg>
                     </a>
                   ))}
