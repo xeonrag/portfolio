@@ -13,8 +13,10 @@ html[data-theme="auto"] {
   --body-loud-color: #fff;
   --header-color: #f3f3ef;
   --header-bg: #080808;
+  --header-link-color: #c6ff00;
   --breadcrumbs-fg: #b6b6b1;
   --breadcrumbs-bg: #111;
+  --breadcrumbs-link-fg: #c6ff00;
   --link-fg: #c6ff00;
   --link-hover-color: #e0ff68;
   --link-selected-fg: #080808;
