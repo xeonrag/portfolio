@@ -596,7 +596,7 @@ body.login #content {
   display: flex;
   min-height: 300px;
   flex-direction: column;
-  align-self: start;
+  align-self: center;
   justify-content: space-between;
   padding: 8px 0 4px;
   overflow: hidden;
@@ -878,7 +878,7 @@ body.login #content {
 
   .admin-login__layout {
     grid-template-columns: 1fr;
-    align-content: start;
+    align-content: safe center;
     align-items: start;
     gap: 16px;
     padding: 18px 0 16px;
