@@ -21,3 +21,24 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return f"{self.name} — {self.interest}"
+
+
+class Project(models.Model):
+    slug = models.SlugField(max_length=80, unique=True)
+    title = models.CharField(max_length=120)
+    category = models.CharField(max_length=80)
+    description = models.TextField()
+    technologies = models.CharField(
+        max_length=500,
+        help_text="Enter technologies separated by commas.",
+    )
+    live_url = models.URLField(max_length=500, blank=True)
+    repository_url = models.URLField(max_length=500, blank=True)
+    display_order = models.PositiveIntegerField(default=0)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["display_order", "title"]
+
+    def __str__(self):
+        return self.title

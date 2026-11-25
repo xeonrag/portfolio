@@ -35,6 +35,26 @@ npm run dev
 The Vite development server proxies `/api/`, `/admin/`, and Django's `/static/`
 assets to `http://127.0.0.1:8000`.
 
+### Use PostgreSQL locally
+
+The backend uses SQLite when `DATABASE_URL` is not set. To use PostgreSQL,
+set `DATABASE_URL` in the PowerShell terminal before running migrations or
+starting Django. Use your provider's external connection URL when connecting
+from your computer; a provider's internal URL is only reachable from its own
+network.
+
+```powershell
+$env:DATABASE_URL = "postgresql://DB_USER:DB_PASSWORD@DB_HOST:5432/DB_NAME"
+.\.venv\Scripts\python.exe backend\manage.py migrate
+.\.venv\Scripts\python.exe backend\manage.py runserver
+```
+
+Set `DATABASE_URL` again in any new terminal used for Django, and restart an
+already-running server after changing it. Keep the real connection URL in an
+environment variable or your hosting provider's secret settings; do not commit
+it to the repository. Migrations create the schema but do not copy existing
+SQLite users or contact messages into PostgreSQL.
+
 ## View received messages
 
 Create an admin account and sign in at `http://127.0.0.1:8000/admin/`:
@@ -48,6 +68,13 @@ $env:DJANGO_SECRET_KEY = "local-only-development-key"
 Messages are stored in the local SQLite database. Email notifications are not
 configured. The admin dashboard and message screens use the portfolio's
 dark-and-lime theme.
+
+## Manage projects
+
+Sign in to Django admin and open `http://127.0.0.1:8000/admin/contact/project/`.
+You can add, edit, reorder, and delete project cards there. The repository
+button appears only when a repository URL is set; technologies are entered as
+a comma-separated list.
 
 ## Check the admin through the ngrok tunnel
 

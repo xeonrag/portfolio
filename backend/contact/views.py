@@ -5,9 +5,30 @@ from django.core.validators import validate_email
 from django.http import JsonResponse
 from django.middleware.csrf import get_token
 from django.views.decorators.csrf import ensure_csrf_cookie
-from django.views.decorators.http import require_http_methods
+from django.views.decorators.http import require_GET, require_http_methods
 
-from .models import ContactMessage
+from .models import ContactMessage, Project
+
+
+@require_GET
+def project_list(_request):
+    projects = [
+        {
+            "slug": project.slug,
+            "title": project.title,
+            "category": project.category,
+            "description": project.description,
+            "technologies": [
+                technology.strip()
+                for technology in project.technologies.split(",")
+                if technology.strip()
+            ],
+            "liveUrl": project.live_url,
+            "repositoryUrl": project.repository_url,
+        }
+        for project in Project.objects.all()
+    ]
+    return JsonResponse({"projects": projects})
 
 
 @ensure_csrf_cookie

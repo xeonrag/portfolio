@@ -9,6 +9,7 @@
   object-fit: contain;
   object-position: right bottom;
   filter: grayscale(1) brightness(0.74) contrast(1.08);
+  mix-blend-mode: screen;
   opacity: 0.96;
   -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);

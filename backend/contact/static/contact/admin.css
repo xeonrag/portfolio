@@ -144,6 +144,108 @@ select:focus {
   border: 1px solid #292929;
 }
 
+#header {
+  min-height: 64px;
+}
+
+#content {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 30px clamp(20px, 4vw, 48px);
+}
+
+#content h1 {
+  margin: 0 0 24px;
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.breadcrumbs {
+  padding: 12px clamp(20px, 4vw, 48px);
+  border-bottom: 1px solid #292929;
+}
+
+body.dashboard #content {
+  display: grid;
+  width: auto;
+  max-width: 1480px;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+  gap: 24px;
+  margin: 0 auto;
+}
+
+body.dashboard #content-main,
+body.dashboard #content-related {
+  float: none;
+  width: auto;
+  margin: 0;
+}
+
+body.dashboard .module {
+  overflow: hidden;
+}
+
+body.dashboard .module h2,
+body.dashboard .module caption {
+  padding: 14px 16px;
+}
+
+body.dashboard .module table th,
+body.dashboard .module table td {
+  padding: 12px 16px;
+}
+
+body.dashboard .module table td a {
+  font-weight: 600;
+}
+
+body.dashboard #content-related {
+  align-self: start;
+  padding: 18px;
+  border: 1px solid #292929;
+  background: #101010;
+}
+
+body.dashboard #content-related .module {
+  border: 0;
+  background: transparent;
+}
+
+body.dashboard #content-related .module h2 {
+  padding: 0 0 14px;
+  border-bottom: 1px solid #292929;
+  background: transparent;
+  color: #f3f3ef;
+}
+
+body.dashboard #content-related h3 {
+  padding: 0;
+}
+
+body.dashboard #content-related .actionlist {
+  margin: 0;
+}
+
+.change-list #changelist {
+  overflow: hidden;
+  border: 1px solid #292929;
+  background: #101010;
+}
+
+.change-list #changelist .results {
+  overflow-x: auto;
+}
+
+.change-list #changelist .results table {
+  min-width: 640px;
+}
+
+.change-list #changelist-filter {
+  border-left: 1px solid #292929;
+  background: #101010;
+}
+
 @media (max-width: 760px) {
   #content {
     padding: 16px;
@@ -156,6 +258,14 @@ select:focus {
 
   .module table {
     width: 100%;
+  }
+
+  body.dashboard #content {
+    grid-template-columns: 1fr;
+  }
+
+  body.dashboard #content-related {
+    padding: 16px;
   }
 }
 
@@ -518,7 +628,7 @@ body.login #content {
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 760px) {
   .admin-login {
     padding: 22px 20px 18px;
   }
