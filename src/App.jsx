@@ -527,7 +527,7 @@ function Experience() {
           <div className="timeline">
             <article className="timeline-entry" data-reveal>
               <span className="timeline-dot is-current" />
-              <p className="timeline-dates">2024 – 2025</p>
+              <p className="timeline-dates">2025 – 2026</p>
               <h3>System Administrator / Accountant</h3>
               <p className="timeline-company">Alpha Air Conditioning</p>
               <ul>
