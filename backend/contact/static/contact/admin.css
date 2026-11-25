@@ -632,7 +632,7 @@ body.login #content {
   color: #c6ff00;
 }
 
-.admin-login__intro h1 {
+#content .admin-login__intro h1 {
   margin: 0;
   color: #f3f3ef;
   font-size: clamp(44px, 6vw, 82px);
@@ -906,7 +906,7 @@ body.login #content {
     margin-bottom: 8px;
   }
 
-  .admin-login__intro h1 {
+  #content .admin-login__intro h1 {
     font-size: clamp(32px, 8.5vw, 46px);
     line-height: 1;
   }
