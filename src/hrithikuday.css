@@ -66,6 +66,7 @@ svg {
   z-index: 100;
   top: 12px;
   left: 12px;
+  min-height: 44px;
   padding: 10px 14px;
   transform: translateY(-160%);
   background: var(--lime);
@@ -93,6 +94,9 @@ svg {
 }
 
 .wordmark {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
   font-size: 21px;
   font-weight: 700;
   letter-spacing: -0.07em;
@@ -114,6 +118,16 @@ svg {
 .desktop-nav a,
 .back-to-top {
   transition: color 160ms ease;
+}
+
+.desktop-nav a {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+}
+
+.back-to-top {
+  min-height: 44px;
 }
 
 .desktop-nav a:hover,
@@ -367,6 +381,7 @@ svg {
 .text-button,
 .inline-link {
   display: inline-flex;
+  min-height: 44px;
   align-items: center;
   gap: 10px;
   font-size: 12px;
@@ -777,6 +792,12 @@ svg {
   letter-spacing: -0.04em;
 }
 
+.timeline-company {
+  margin: -8px 0 18px;
+  color: #777772;
+  font-size: 13px;
+}
+
 .timeline-entry ul {
   display: grid;
   gap: 12px;
@@ -785,6 +806,65 @@ svg {
   color: #555550;
   font-size: 14px;
   line-height: 1.7;
+}
+
+.career-details {
+  display: grid;
+  gap: 40px;
+}
+
+.education,
+.certifications {
+  border-top: 1px solid #c9c8c2;
+  padding-top: 24px;
+}
+
+.career-subheading {
+  margin: 0 0 20px;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.education-entry + .education-entry {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #d8d7d1;
+}
+
+.education-entry h4 {
+  margin: 0 0 6px;
+  font-size: 17px;
+  letter-spacing: -0.03em;
+}
+
+.education-institution {
+  margin: 0;
+  color: #555550;
+  font-size: 14px;
+}
+
+.education-institution::before {
+  content: '· ';
+  color: #7d9800;
+  font-weight: 700;
+}
+
+.certification-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #555550;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.certification-list li::before {
+  content: '· ';
+  color: #7d9800;
+  font-weight: 700;
 }
 
 .contact-section {
@@ -865,6 +945,11 @@ svg {
   font-size: 13px;
 }
 
+.form-field input,
+.form-field select {
+  min-height: 44px;
+}
+
 .form-field input::placeholder,
 .form-field textarea::placeholder {
   color: #84847f;
@@ -933,6 +1018,7 @@ svg {
 
 .contact-email {
   display: inline-flex;
+  min-height: 44px;
   align-items: center;
   gap: 10px;
   font-size: clamp(17px, 2.4vw, 26px);
@@ -951,6 +1037,12 @@ svg {
   margin-top: 16px;
   color: #b3b3ae;
   font-size: 14px;
+}
+
+.contact-phone {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
 }
 
 .contact-location-social {
@@ -1011,8 +1103,8 @@ svg {
   display: inline-flex;
   flex: 1 1 0;
   width: auto;
-  height: 24px;
-  min-width: 0;
+  height: 44px;
+  min-width: 44px;
   align-items: center;
   justify-content: center;
   border: 0;
@@ -1166,8 +1258,8 @@ svg {
 
   .menu-toggle {
     display: inline-flex;
-    width: 34px;
-    height: 38px;
+    width: 44px;
+    height: 44px;
   }
 
   .hero {
@@ -1242,9 +1334,38 @@ svg {
 
   .header-cta,
   .button {
-    min-height: 42px;
+    min-height: 44px;
     padding-inline: 12px;
     font-size: 10px;
+  }
+
+  .text-button,
+  .inline-link,
+  .back-to-top,
+  .contact-email,
+  .contact-phone {
+    min-height: 44px;
+  }
+
+  .text-button,
+  .inline-link,
+  .back-to-top {
+    padding-inline: 8px;
+  }
+
+  .contact-phone {
+    display: flex;
+    align-items: center;
+  }
+
+  .social-links a {
+    min-width: 44px;
+    height: 44px;
+  }
+
+  .form-field input,
+  .form-field select {
+    min-height: 44px;
   }
 
   .scroll-indicator {

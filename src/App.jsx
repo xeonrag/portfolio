@@ -499,12 +499,10 @@ function Skills() {
 }
 
 function Experience() {
-  const milestones = [
-    'Building responsive frontend experiences with React.',
-    'Developing Python/Django backends and REST APIs.',
-    'Building scalable web applications and modern mobile apps.',
-    'Completed 15+ projects across 21 technologies.',
-    'Built a portfolio of 40+ GitHub repositories.',
+  const responsibilities = [
+    'Managed system setup, network configurations, and software installations.',
+    'Provided technical support and troubleshooting for system-related issues.',
+    'Handled financial records, reporting, and data entry tasks.',
   ]
 
   return (
@@ -512,7 +510,7 @@ function Experience() {
       <div className="container experience-grid">
         <div className="experience-heading" data-reveal>
           <div className="section-label">
-            <span>04 /</span> LEARNING. BUILDING. EVOLVING.
+            <span>04 /</span> EXPERIENCE &amp; EDUCATION
           </div>
           <h2 className="section-heading">
             The Journey
@@ -520,22 +518,51 @@ function Experience() {
             So <span className="underline-accent">Far.</span>
           </h2>
           <p className="section-aside">
-            2+ years learning and building full-stack products, from React
-            interfaces to Django APIs.
+            A background in system administration, technical support, and
+            accounting, alongside studies in commerce and full-stack development.
           </p>
           <StarIcon className="career-star" />
         </div>
-        <div className="timeline">
-          <article className="timeline-entry" data-reveal>
-            <span className="timeline-dot is-current" />
-            <p className="timeline-dates">2+ Years</p>
-            <h3>Learning &amp; Building</h3>
-            <ul>
-              {milestones.map((milestone) => (
-                <li key={milestone}>{milestone}</li>
-              ))}
+        <div className="career-details">
+          <div className="timeline">
+            <article className="timeline-entry" data-reveal>
+              <span className="timeline-dot is-current" />
+              <p className="timeline-dates">2024 – 2025</p>
+              <h3>System Administrator / Accountant</h3>
+              <p className="timeline-company">Alpha Air Conditioning</p>
+              <ul>
+                {responsibilities.map((responsibility) => (
+                  <li key={responsibility}>{responsibility}</li>
+                ))}
+              </ul>
+            </article>
+          </div>
+          <section className="education" aria-labelledby="education-heading" data-reveal>
+            <h3 className="career-subheading" id="education-heading">
+              Education
+            </h3>
+            <article className="education-entry">
+              <h4>Python Full Stack Development</h4>
+              <p className="education-institution">IPCS Global Calicut</p>
+            </article>
+            <article className="education-entry">
+              <h4>Bachelor of Commerce (B.Com)</h4>
+              <p className="education-institution">University of Calicut</p>
+            </article>
+          </section>
+          <section
+            className="certifications"
+            aria-labelledby="certifications-heading"
+            data-reveal
+          >
+            <h3 className="career-subheading" id="certifications-heading">
+              Certifications
+            </h3>
+            <ul className="certification-list">
+              <li>Python Full Stack Development</li>
+              <li>Tally Essential Comprehensive</li>
             </ul>
-          </article>
+          </section>
         </div>
       </div>
     </section>
