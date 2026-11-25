@@ -33,10 +33,6 @@ body {
   background: #080808;
 }
 
-#header {
-  border-bottom: 1px solid #292929;
-}
-
 #site-name a {
   color: #f3f3ef;
   font-weight: 700;
@@ -54,7 +50,7 @@ body {
 
 #user-tools #logout-form {
   display: inline-flex;
-  margin: 0 0 0 10px;
+  margin: 0;
   vertical-align: middle;
 }
 
@@ -81,15 +77,30 @@ body {
 #content-related,
 .inline-group {
   border: 1px solid #292929;
+  border-radius: 8px;
   background: #101010;
 }
 
 .module h2,
 .module caption,
 .inline-group h2 {
-  background: #c6ff00;
-  color: #080808;
+  border-bottom: 1px solid #292929;
+  border-left: 3px solid #c6ff00;
+  background: #151515;
+  color: #f3f3ef;
   font-weight: 700;
+}
+
+body.dashboard #content-main .module caption a,
+body.dashboard #content-main .module caption a:visited {
+  color: #c6ff00;
+}
+
+body.dashboard #content-main .module caption a:hover,
+body.dashboard #content-main .module caption a:focus-visible {
+  color: #e0ff68;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .module table th,
@@ -110,10 +121,21 @@ input[type="button"],
 input[type="reset"],
 .submit-row input {
   border: 0;
-  border-radius: 0;
+  border-radius: 4px;
   background: #c6ff00;
   color: #080808;
   font-weight: 700;
+}
+
+.submit-row input.default {
+  background: #c6ff00;
+  color: #080808;
+}
+
+.submit-row input.default:hover,
+.submit-row input.default:focus-visible {
+  background: #d9ff4f;
+  color: #080808;
 }
 
 .button:hover,
@@ -130,6 +152,7 @@ textarea,
 select,
 .selector select {
   border-color: #383838;
+  border-radius: 4px;
   background-color: #111;
   color: #f3f3ef;
 }
@@ -144,18 +167,43 @@ select:focus {
   border: 1px solid #292929;
 }
 
-#header {
+body:not(.login) #header {
+  display: flex;
   min-height: 64px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px clamp(16px, 4vw, 48px);
+  border-bottom: 1px solid #292929;
+}
+
+body:not(.login) #branding {
+  flex: 0 0 auto;
+}
+
+body:not(.login) #site-name {
+  margin: 0;
+}
+
+body:not(.login) #user-tools {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-left: auto;
+  text-align: right;
 }
 
 #content {
   max-width: 1480px;
   margin: 0 auto;
-  padding: 30px clamp(20px, 4vw, 48px);
+  padding: 24px clamp(20px, 4vw, 48px);
 }
 
 #content h1 {
-  margin: 0 0 24px;
+  margin: 0 0 20px;
   font-size: clamp(24px, 3vw, 34px);
   font-weight: 600;
   letter-spacing: -0.04em;
@@ -171,8 +219,17 @@ body.dashboard #content {
   width: auto;
   max-width: 1480px;
   grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
-  gap: 24px;
+  grid-template-areas:
+    "title title"
+    "main related";
+  align-items: start;
+  gap: 20px;
   margin: 0 auto;
+}
+
+body.dashboard #content > h1 {
+  grid-area: title;
+  margin-bottom: 0;
 }
 
 body.dashboard #content-main,
@@ -182,8 +239,22 @@ body.dashboard #content-related {
   margin: 0;
 }
 
+body.dashboard #content-main {
+  grid-area: main;
+  min-width: 0;
+}
+
+body.dashboard #content-related {
+  grid-area: related;
+}
+
+body.dashboard #content > br {
+  display: none;
+}
+
 body.dashboard .module {
   overflow: hidden;
+  margin-bottom: 16px;
 }
 
 body.dashboard .module h2,
@@ -191,18 +262,28 @@ body.dashboard .module caption {
   padding: 14px 16px;
 }
 
+body.dashboard .module h2 {
+  padding-left: 13px;
+}
+
 body.dashboard .module table th,
 body.dashboard .module table td {
-  padding: 12px 16px;
+  padding: 10px 14px;
 }
 
 body.dashboard .module table td a {
   font-weight: 600;
 }
 
+body.dashboard .module table td a:hover,
+body.dashboard .module table td a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 body.dashboard #content-related {
   align-self: start;
-  padding: 18px;
+  padding: 16px;
   border: 1px solid #292929;
   background: #101010;
 }
@@ -227,10 +308,22 @@ body.dashboard #content-related .actionlist {
   margin: 0;
 }
 
+body.dashboard #content-related .actionlist li {
+  padding: 8px 0;
+  border-bottom: 1px solid #292929;
+}
+
 .change-list #changelist {
   overflow: hidden;
   border: 1px solid #292929;
+  border-radius: 8px;
   background: #101010;
+}
+
+.change-list #toolbar {
+  padding: 14px;
+  border-bottom: 1px solid #292929;
+  background: #141414;
 }
 
 .change-list #changelist .results {
@@ -242,11 +335,119 @@ body.dashboard #content-related .actionlist {
 }
 
 .change-list #changelist-filter {
+  padding: 16px;
   border-left: 1px solid #292929;
   background: #101010;
 }
 
+.change-list #changelist-filter h2 {
+  margin: 0 0 12px;
+  color: #f3f3ef;
+  font-size: 12px;
+}
+
+.change-list #changelist-filter li.selected {
+  border-left: 2px solid #c6ff00;
+}
+
+.change-form #content-main {
+  float: none;
+  width: 100%;
+  min-width: 0;
+}
+
+.change-form .module {
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+
+.change-form .module h2 {
+  padding: 12px 16px;
+}
+
+.change-form .aligned .form-row {
+  padding: 12px 16px;
+  border-bottom: 1px solid #222;
+}
+
+.change-form .submit-row {
+  position: static;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0;
+  padding: 12px 14px;
+  border: 1px solid #292929;
+  border-radius: 8px;
+  background: #101010;
+}
+
+@media (max-width: 960px) {
+  body.dashboard #content {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "title"
+      "main"
+      "related";
+  }
+}
+
+@media (max-width: 1200px) {
+  .change-list #changelist {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    overflow: visible;
+    border: 0;
+    background: transparent;
+  }
+
+  .change-list #changelist-form {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    margin: 0;
+    order: 1;
+    overflow: hidden;
+    border: 1px solid #292929;
+    border-radius: 8px;
+    background: #101010;
+  }
+
+  .change-list #changelist-filter {
+    order: 2;
+    position: static;
+    float: none;
+    margin: 0;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #292929;
+    border-radius: 8px;
+  }
+
+  .change-list #changelist .results {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 760px) {
+  body:not(.login) #header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 14px 16px;
+  }
+
+  body:not(.login) #user-tools {
+    justify-content: flex-start;
+    margin-left: 0;
+    text-align: left;
+  }
+
   #content {
     padding: 16px;
   }
@@ -266,6 +467,43 @@ body.dashboard #content-related .actionlist {
 
   body.dashboard #content-related {
     padding: 16px;
+  }
+
+  body.change-form .aligned .form-row {
+    padding: 6px 12px;
+  }
+
+  body.change-form .aligned .form-row label {
+    display: block;
+    float: none;
+    width: auto;
+    max-width: 100%;
+    margin: 0 0 4px;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.3;
+  }
+
+  body.change-form .aligned .form-row > div,
+  body.change-form .aligned .form-row .flex-container {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  body.change-form .aligned .form-row .flex-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  body.change-form .aligned .form-row input.vTextField,
+  body.change-form .aligned .form-row input.vURLField,
+  body.change-form .aligned .form-row textarea,
+  body.change-form .aligned .form-row select {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 }
 
@@ -350,16 +588,17 @@ body.login #content {
   grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.78fr);
   align-items: center;
   gap: clamp(48px, 9vw, 140px);
-  padding: 54px 0;
+  padding: 36px 0;
 }
 
 .admin-login__intro {
   position: relative;
   display: flex;
-  min-height: 500px;
+  min-height: 300px;
   flex-direction: column;
+  align-self: start;
   justify-content: space-between;
-  padding: 12px 0 4px;
+  padding: 8px 0 4px;
   overflow: hidden;
 }
 
@@ -385,11 +624,11 @@ body.login #content {
   position: relative;
   z-index: 1;
   margin: auto 0;
-  padding: 44px 0;
+  padding: 24px 0;
 }
 
 .admin-login__index {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   color: #c6ff00;
 }
 
@@ -404,10 +643,10 @@ body.login #content {
 
 .admin-login__description {
   max-width: 390px;
-  margin: 26px 0 0;
+  margin: 22px 0 0;
   color: #a7a7a2;
   font-size: 14px;
-  line-height: 1.8;
+  line-height: 1.7;
 }
 
 .admin-login__graphic {
