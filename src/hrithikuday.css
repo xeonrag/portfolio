@@ -905,6 +905,22 @@ svg {
   gap: 0;
 }
 
+.contact-location-social .social-links a:first-child {
+  justify-content: flex-start;
+}
+
+.contact-location-social .social-links a:first-child .social-link-icon {
+  margin-left: -2px;
+}
+
+.contact-location-social .social-links a:last-child {
+  justify-content: flex-end;
+}
+
+.contact-location-social .social-links a:last-child .social-link-icon {
+  margin-right: -1px;
+}
+
 .social-links a {
   display: inline-flex;
   flex: 1 1 0;
