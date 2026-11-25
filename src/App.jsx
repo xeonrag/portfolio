@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './hrithikuday.css'
 import './portrait.css'
 
@@ -25,6 +25,7 @@ const navigation = [
   ['Home', '#home'],
   ['About', '#about'],
   ['Skills', '#skills'],
+  ['Projects', '#projects'],
   ['Experience', '#experience'],
   ['Contact', '#contact'],
 ]
@@ -498,6 +499,120 @@ function Skills() {
   )
 }
 
+function Projects() {
+  const [projects, setProjects] = useState([])
+  const [isLoadingProjects, setIsLoadingProjects] = useState(true)
+  const [projectsError, setProjectsError] = useState('')
+  const [retryCount, setRetryCount] = useState(0)
+
+  useEffect(() => {
+    const controller = new AbortController()
+
+    async function loadProjects() {
+      try {
+        const response = await fetch('/api/projects/', { signal: controller.signal })
+        if (!response.ok) {
+          throw new Error(`Projects request failed (${response.status}).`)
+        }
+
+        const payload = await response.json()
+        if (!payload || !Array.isArray(payload.projects)) {
+          throw new Error('The projects response has an invalid format.')
+        }
+
+        setProjects(payload.projects)
+      } catch (error) {
+        if (error.name === 'AbortError') return
+        console.error('Unable to load projects.', error)
+        setProjectsError('Projects could not be loaded. Please try again later.')
+      } finally {
+        if (!controller.signal.aborted) {
+          setIsLoadingProjects(false)
+        }
+      }
+    }
+
+    loadProjects()
+
+    return () => controller.abort()
+  }, [retryCount])
+
+  return (
+    <section id="projects" className="section section-dark projects-section">
+      <div className="container">
+        <div className="section-heading-row" data-reveal>
+          <div>
+            <div className="section-label">
+              <span>04 /</span> PROJECTS
+            </div>
+            <h2 className="section-heading">
+              Projects I&apos;ve <span className="lime">Built.</span>
+            </h2>
+          </div>
+          <p className="section-aside">
+            A selection of Telegram bots, web applications, APIs, and tools.
+          </p>
+        </div>
+        {projectsError ? (
+          <div className="projects-state projects-state-error" role="alert">
+            <p>{projectsError}</p>
+            <button
+              className="inline-link projects-retry"
+              type="button"
+              onClick={() => {
+                setIsLoadingProjects(true)
+                setProjectsError('')
+                setRetryCount((count) => count + 1)
+              }}
+            >
+              Try again
+            </button>
+          </div>
+        ) : isLoadingProjects ? (
+          <p className="projects-state" role="status">
+            Loading projects...
+          </p>
+        ) : projects.length === 0 ? (
+          <p className="projects-state">No projects have been added yet.</p>
+        ) : (
+          <div className="projects-grid" data-reveal>
+            {projects.map((project) => (
+              <article className="project-card" key={project.slug}>
+                <span className="project-category">{project.category}</span>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <ul className="project-technologies" aria-label="Technologies">
+                  {project.technologies.map((technology) => (
+                    <li key={technology}>{technology}</li>
+                  ))}
+                </ul>
+                {(project.liveUrl || project.repositoryUrl) && (
+                  <div className="project-links">
+                    {project.liveUrl && (
+                      <a href={project.liveUrl} target="_blank" rel="noreferrer">
+                        Live Demo <ArrowIcon />
+                      </a>
+                    )}
+                    {project.repositoryUrl && (
+                      <a
+                        href={project.repositoryUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Repository <ArrowIcon />
+                      </a>
+                    )}
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}
+
 function Experience() {
   const responsibilities = [
     'Managed system setup, network configurations, and software installations.',
@@ -510,7 +625,7 @@ function Experience() {
       <div className="container experience-grid">
         <div className="experience-heading" data-reveal>
           <div className="section-label">
-            <span>04 /</span> EXPERIENCE &amp; EDUCATION
+            <span>05 /</span> EXPERIENCE &amp; EDUCATION
           </div>
           <h2 className="section-heading">
             The Journey
@@ -647,7 +762,7 @@ function Contact() {
       <div className="container">
         <div className="contact-heading" data-reveal>
           <div className="section-label">
-            <span>05 /</span> GET IN TOUCH
+            <span>06 /</span> GET IN TOUCH
           </div>
           <h2>
             Let&apos;s Build
@@ -802,6 +917,7 @@ function App() {
         <About />
         <Services />
         <Skills />
+        <Projects />
         <Experience />
         <Contact />
       </main>
