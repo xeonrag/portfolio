@@ -12,6 +12,10 @@ class AdminThemeTests(TestCase):
 
         self.assertContains(response, "Hrithik Uday Admin")
         self.assertContains(response, "/static/contact/admin.css")
+        self.assertContains(response, "Ideas are only")
+        self.assertContains(response, 'name="username"')
+        self.assertContains(response, 'name="password"')
+        self.assertContains(response, 'name="csrfmiddlewaretoken"')
 
     def test_admin_dashboard_uses_portfolio_branding(self):
         user = get_user_model().objects.create_superuser(

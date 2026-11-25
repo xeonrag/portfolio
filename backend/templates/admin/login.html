@@ -1,0 +1,101 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block title %}{% if form.errors %}{% translate "Error:" %} {% endif %}{{ block.super }}{% endblock %}
+{% block extrastyle %}{{ block.super }}{{ form.media }}{% endblock %}
+{% block bodyclass %}{{ block.super }} login{% endblock %}
+{% block usertools %}{% endblock %}
+{% block nav-global %}{% endblock %}
+{% block nav-sidebar %}{% endblock %}
+{% block content_title %}{% endblock %}
+{% block nav-breadcrumbs %}{% endblock %}
+
+{% block content %}
+<div class="admin-login">
+  <a class="admin-login__brand" href="{% url 'admin:index' %}" aria-label="Hrithik Uday admin">
+    hrithik<span>.</span> / ADMIN
+  </a>
+
+  <div class="admin-login__layout">
+    <section class="admin-login__intro" aria-labelledby="admin-login-heading">
+      <p class="admin-login__eyebrow">PORTFOLIO CMS <span> / </span> PRIVATE ACCESS</p>
+      <div class="admin-login__intro-copy">
+        <p class="admin-login__index">01 — THE WORKSPACE</p>
+        <h1 id="admin-login-heading">Ideas are only<br>the <span>beginning.</span></h1>
+        <p class="admin-login__description">
+          A quiet place to shape the details, keep the work moving, and make what comes next.
+        </p>
+      </div>
+      <div class="admin-login__graphic" aria-hidden="true"></div>
+      <p class="admin-login__footnote">DESIGNED TO MAKE. BUILT TO LAST.</p>
+    </section>
+
+    <section class="admin-login__panel" aria-labelledby="admin-login-title">
+      <div class="admin-login__panel-top">
+        <span>SECURE SIGN IN</span>
+        <span class="admin-login__status"><i></i> ENCRYPTED SESSION</span>
+      </div>
+
+      {% if user.is_authenticated %}
+      <p class="errornote">
+        {% blocktranslate trimmed %}
+          You are authenticated as {{ username }}, but are not authorized to access this page.
+          Sign in with a different account.
+        {% endblocktranslate %}
+      </p>
+      {% endif %}
+
+      <h2 id="admin-login-title">Welcome<br>back<span>.</span></h2>
+      <p class="admin-login__prompt">Sign in to access your portfolio dashboard.</p>
+
+      {% if form.errors and not form.non_field_errors %}
+      <p class="errornote">
+        {% translate "Please correct the error below." %}
+      </p>
+      {% endif %}
+
+      {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+        <p class="errornote">{{ error }}</p>
+        {% endfor %}
+      {% endif %}
+
+      <form action="{{ app_path }}" method="post" id="login-form" class="admin-login__form">
+        {% csrf_token %}
+        <div class="form-row">
+          {{ form.username.errors }}
+          <label for="{{ form.username.id_for_label }}">{% translate "Username" %}</label>
+          {{ form.username }}
+        </div>
+        <div class="form-row">
+          {{ form.password.errors }}
+          <label for="{{ form.password.id_for_label }}">{% translate "Password" %}</label>
+          {{ form.password }}
+          <input type="hidden" name="next" value="{{ next }}">
+        </div>
+
+        {% url 'admin_password_reset' as password_reset_url %}
+        {% if password_reset_url %}
+        <div class="password-reset-link">
+          <a href="{{ password_reset_url }}">{% translate "Forgot your password?" %}</a>
+        </div>
+        {% endif %}
+
+        <button class="admin-login__submit" type="submit">
+          <span>{% translate "Enter dashboard" %}</span>
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M4 10h11M10 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+          </svg>
+        </button>
+      </form>
+
+      <p class="admin-login__panel-foot">HRITHIK UDAY <span>·</span> ADMINISTRATION</p>
+    </section>
+  </div>
+
+  <div class="admin-login__bottom">
+    <span>INDEPENDENT BY DESIGN</span>
+    <span>© HRITHIK UDAY</span>
+  </div>
+</div>
+{% endblock %}
