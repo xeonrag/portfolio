@@ -359,6 +359,11 @@ svg {
   background: #d4ff37;
 }
 
+.button-lime:active:not(:disabled) {
+  transform: translateY(0) scale(0.97);
+  background: #a5d600;
+}
+
 .text-button,
 .inline-link {
   display: inline-flex;

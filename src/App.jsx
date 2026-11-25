@@ -36,9 +36,9 @@ const services = [
       'Responsive, accessible interfaces and polished web experiences built with React, Next.js, and TypeScript.',
   },
   {
-    title: 'App Development',
+    title: 'Bot Development',
     description:
-      'Scalable cross-platform mobile applications and fluid desktop applications tailored to user needs.',
+      'Custom Telegram bots for group workflows, notifications, and task automation that simplify repetitive work.',
   },
   {
     title: 'Backend Development',
