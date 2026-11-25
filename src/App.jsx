@@ -32,24 +32,28 @@ const navigation = [
 const services = [
   {
     title: 'Frontend Development',
+    icon: 'frontend',
     description:
       'Responsive, accessible interfaces and polished web experiences built with React, Next.js, and TypeScript.',
     tools: ['React', 'HTML', 'CSS', 'JavaScript'],
   },
   {
     title: 'Bot Development',
+    icon: 'bot',
     description:
       'Custom Telegram bots for group workflows, notifications, and task automation that simplify repetitive work.',
     tools: ['Chat bots', 'Auto-filter bots', 'Streaming bots', 'Downloader bots', 'Utility bots'],
   },
   {
     title: 'Backend Development',
+    icon: 'backend',
     description:
       'Python and Django backends, REST APIs, and database-driven systems using Django REST Framework, PostgreSQL, and MongoDB.',
     tools: ['Python', 'Django', 'Django REST Framework', 'PostgreSQL', 'MongoDB'],
   },
   {
     title: 'Automation',
+    icon: 'automation',
     description:
       'Custom productivity tools, scripting workflows, and automation for repetitive tasks.',
     tools: ['Workflow automation', 'Task automation', 'File and data processing'],
@@ -111,6 +115,69 @@ function StarIcon({ className = '' }) {
         stroke="currentColor"
         strokeWidth="3"
       />
+    </svg>
+  )
+}
+
+function ServiceIcon({ type }) {
+  const iconProps = {
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.5,
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    'aria-hidden': true,
+    focusable: false,
+  }
+
+  if (type === 'frontend') {
+    return (
+      <span className="service-tech-icons" aria-hidden="true">
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <ellipse cx="16" cy="16" rx="13" ry="5" />
+          <ellipse cx="16" cy="16" rx="13" ry="5" transform="rotate(60 16 16)" />
+          <ellipse cx="16" cy="16" rx="13" ry="5" transform="rotate(120 16 16)" />
+          <circle cx="16" cy="16" r="1.5" />
+        </svg>
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <path d="m6 4 2 23 8 3 8-3 2-23z" />
+          <path d="M11 10h10l-.5 4H12l.4 4h7.7l-.7 6-3.4 1.2-3.4-1.2-.2-2" />
+        </svg>
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <path d="m6 4 2 23 8 3 8-3 2-23z" />
+          <path d="M21 10h-9l.4 4h8.2l-.8 10-3.8 1.2-3.8-1.2-.3-3" />
+        </svg>
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <path d="M5 5h22v22H5z" />
+          <path d="M19 11c-.6-.7-1.4-1-2.4-1-1.4 0-2.3.8-2.3 2 0 3 5.2 1.4 5.2 4.7 0 1.6-1.3 2.7-3.2 2.7-1.4 0-2.6-.5-3.4-1.5M21 20h3" />
+        </svg>
+      </span>
+    )
+  }
+
+  if (type === 'bot') {
+    return (
+      <svg className="service-icon" viewBox="0 0 32 32" {...iconProps}>
+        <path d="M7 6h18a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3h-9l-7 4v-4h-2a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3Z" />
+        <path d="M10 12h12M10 17h8" />
+      </svg>
+    )
+  }
+
+  if (type === 'backend') {
+    return (
+      <svg className="service-icon" viewBox="0 0 32 32" {...iconProps}>
+        <rect x="4" y="5" width="24" height="9" rx="2" />
+        <rect x="4" y="18" width="24" height="9" rx="2" />
+        <path d="M9 9.5h.01M13 9.5h.01M9 22.5h.01M13 22.5h.01M18 9.5h6M18 22.5h6" />
+      </svg>
+    )
+  }
+
+  return (
+    <svg className="service-icon" viewBox="0 0 32 32" {...iconProps}>
+      <path d="m13 3-.8 3.2a10 10 0 0 0-2.3 1.3L6.8 6.4l-3 5.2 2.5 2.2a10 10 0 0 0 0 2.6l-2.5 2.2 3 5.2 3.1-1.1a10 10 0 0 0 2.3 1.3L13 27h6l.8-3.2a10 10 0 0 0 2.3-1.3l3.1 1.1 3-5.2-2.5-2.2a10 10 0 0 0 0-2.6l2.5-2.2-3-5.2-3.1 1.1a10 10 0 0 0-2.3-1.3L19 3z" />
+      <circle cx="16" cy="15" r="4" />
     </svg>
   )
 }
@@ -369,7 +436,7 @@ function Services() {
           </div>
         </div>
         <div className="services-grid" data-reveal>
-          {services.map((service, index) => (
+          {services.map((service) => (
             <article
               className="service-item"
               key={service.title}
@@ -377,7 +444,7 @@ function Services() {
               aria-label={`${service.title}. Focus or hover to view tools and examples.`}
             >
               <span className="service-top">
-                <span>{String(index + 1).padStart(2, '0')}</span>
+                <ServiceIcon type={service.icon} />
               </span>
               <span className="service-title">{service.title}</span>
               <span className="service-description">{service.description}</span>

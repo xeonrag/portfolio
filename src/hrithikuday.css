@@ -652,9 +652,27 @@ svg {
 }
 
 .service-top {
+  display: flex;
+  align-items: center;
   margin-bottom: 42px;
   color: var(--lime);
   font-size: 11px;
+}
+
+.service-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.service-tech-icons {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.service-tech-icons svg {
+  width: 26px;
+  height: 26px;
 }
 
 .service-title {
