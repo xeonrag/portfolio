@@ -269,8 +269,9 @@ body.dashboard #content-related .actionlist {
   }
 }
 
-body.login {
+html body.login {
   min-width: 320px;
+  padding: 0;
   background:
     radial-gradient(ellipse at 18% 20%, rgba(198, 255, 0, 0.055), transparent 34rem),
     #080808;
