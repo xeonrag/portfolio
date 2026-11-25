@@ -296,6 +296,7 @@ body.dashboard #content-related .module {
 body.dashboard #content-related .module h2 {
   padding: 0 0 14px;
   border-bottom: 1px solid #292929;
+  border-left: 0;
   background: transparent;
   color: #f3f3ef;
 }
@@ -309,7 +310,7 @@ body.dashboard #content-related .actionlist {
 }
 
 body.dashboard #content-related .actionlist li {
-  padding: 8px 0;
+  padding: 8px 0 8px 18px;
   border-bottom: 1px solid #292929;
 }
 
