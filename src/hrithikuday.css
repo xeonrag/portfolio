@@ -1329,21 +1329,21 @@ svg {
   }
 
   .services-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .service-item,
-  .service-item:first-child,
-  .service-item:last-child,
-  .service-item:nth-child(3) {
+  .service-item {
     min-height: 0;
-    padding: 22px 16px;
-    border-right: 0;
-    border-bottom: 1px solid var(--rule-dark);
+    padding: 22px 12px;
   }
 
-  .service-item:last-child {
-    border-bottom: 0;
+  .service-tech-icons {
+    gap: 5px;
+  }
+
+  .service-tech-icons svg {
+    width: 24px;
+    height: 24px;
   }
 
   .service-top {
