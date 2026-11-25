@@ -230,7 +230,7 @@ function Hero() {
             <p>
               <span className="status-dot" />
               <span className="hero-topline-copy">
-                REACT FRONTEND &amp; PYTHON DJANGO BACKEND
+                PYTHON FULL-STACK FREELANCER
                 <span className="hero-topline-location">
                   <span className="hero-location-separator"> · </span>
                   MALAPPURAM, INDIA
@@ -247,16 +247,13 @@ function Hero() {
           </h1>
           <div className="hero-introduction">
             <h2>
-              <span>React Frontend</span>
-              <span>
-                Python <em>Django Backend</em>
-              </span>
+              <span>Python Full-Stack</span>
+              <span><em>Developer</em></span>
             </h2>
             <p>
-              I build responsive React interfaces and pair them with dependable
-              Python/Django backends—from REST APIs to data-driven applications.
-              I care about clean code, practical user experiences, and the details
-              that make products feel polished.
+              I build complete web applications with Python, Django, and modern
+              frontend tools—from database-backed APIs to responsive, polished
+              interfaces. I focus on clean code and reliable user experiences.
             </p>
             <div className="hero-actions">
               <a href="#experience" className="button button-lime">
@@ -468,9 +465,13 @@ function Contact() {
   const [isSending, setIsSending] = useState(false)
   const [submitFeedback, setSubmitFeedback] = useState(null)
   const socialLinks = [
-    { label: 'GitHub', href: 'https://github.com/hrithikuday' },
-    { label: 'WhatsApp', href: 'https://wa.me/918075557290' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/hrithik-uday' },
+    { label: 'GitHub', href: 'https://github.com/hrithikuday', icon: 'github-icon' },
+    { label: 'WhatsApp', href: 'https://wa.me/918075557290', icon: 'whatsapp-icon' },
+    {
+      label: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/hrithik-uday',
+      icon: 'linkedin-icon',
+    },
   ]
 
   async function handleSubmit(event) {
@@ -560,17 +561,27 @@ function Contact() {
             <a href="tel:+918075557290" className="contact-phone">
               +91 80755 57290
             </a>
-            <p className="contact-location">Malappuram, India</p>
-            <div className="social-links">
-              {socialLinks.map(({ label, href }) => (
-                href ? (
-                  <a key={label} href={href} target="_blank" rel="noreferrer">
-                    {label} <ArrowIcon className="social-link-arrow" />
-                  </a>
-                ) : (
-                  <span key={label}>{label}</span>
-                )
-              ))}
+            <div className="contact-location-social">
+              <div className="contact-location-city-group">
+                <p className="contact-location">Malappuram</p>
+                <div className="social-links" role="group" aria-label="Social profiles">
+                  {socialLinks.map(({ label, href, icon }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={label}
+                      title={label}
+                    >
+                      <svg className="social-link-icon" aria-hidden="true" focusable="false">
+                        <use href={`/icons.svg#${icon}`} />
+                      </svg>
+                    </a>
+                  ))}
+                </div>
+              </div>
+              <span className="contact-location-country">, India</span>
             </div>
           </div>
           <form
