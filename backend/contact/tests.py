@@ -29,6 +29,8 @@ class AdminThemeTests(TestCase):
 
         self.assertContains(response, "Portfolio inbox")
         self.assertContains(response, "/static/contact/admin.css")
+        self.assertContains(response, 'id="logout-form"')
+        self.assertContains(response, "Log out")
 
 
 class ContactSubmissionTests(TestCase):
