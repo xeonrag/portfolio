@@ -86,6 +86,27 @@ class ContactSubmissionTests(TestCase):
 class ProjectManagementTests(TestCase):
     url = "/api/projects/"
 
+    def test_seeded_projects_use_valid_links(self):
+        expected_links = {
+            "income-expense-tracker": (
+                "",
+                "https://github.com/hrithikuday/MyExpense",
+            ),
+            "customer-bill-system": ("", ""),
+            "xeon-e-commerce": (
+                "",
+                "https://github.com/hrithikuday/Ecommerce",
+            ),
+            "developer-portfolio": ("https://hrithikuday.in/", ""),
+            "myapis": ("", "https://github.com/hrithikuday/MyAPIs"),
+        }
+
+        for slug, (live_url, repository_url) in expected_links.items():
+            with self.subTest(slug=slug):
+                project = Project.objects.get(slug=slug)
+                self.assertEqual(project.live_url, live_url)
+                self.assertEqual(project.repository_url, repository_url)
+
     def test_public_endpoint_returns_projects_and_links(self):
         Project.objects.create(
             slug="test-project",
